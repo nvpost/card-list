@@ -11,7 +11,8 @@ export default new Vuex.Store({
   },
   state:{
     loading: false,
-    error: null
+    error: null,
+    dropDown: false
     },
     mutations: {
         setLoading (state, payload) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
         },
         clearError (state) {
           state.error = null
+        },
+        setDropDown(state, payload){
+          state.dropDown=payload
         }
       },
       actions: {
@@ -33,6 +37,9 @@ export default new Vuex.Store({
         },
         clearError ({commit}) {
           commit('clearError')
+        },
+        dropDown ({commit}, payload) {
+          commit('setDropDown', payload)
         }
       },
       getters: {
@@ -41,6 +48,9 @@ export default new Vuex.Store({
         },
         error (state) {
           return state.error
+        },
+        getDropDown(state){
+          return state.dropDown
         }
       } 
 })

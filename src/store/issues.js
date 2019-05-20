@@ -1,3 +1,4 @@
+import userStore from './user.js'
 
 export default{
     state:{
@@ -57,7 +58,26 @@ export default{
                 throw error
             }
             return 'all ok'
-        }
+        },
+        async newStat({commit}, payload){
+            commit('clearError')
+            try {
+                const new_stat = await fetch("https://nv-dev.ru/application/card-list/set_new_stat.php", {
+                    method: 'POST',
+                    contentType: 'application/json',
+                    body: JSON.stringify(payload)
+                })
+                .then( res => {return res.json()})
+                .then( data => {
+                    //console.log(this.getters.getUser) 
+                    //this.dispatch('fetchIssues', this.getters.getUser)
+                })
+                commit('setLoading', false)
+            } catch (error) {
+                commit('setError', error.message)
+                throw error
+            }
+        },
     },
     getters:{
         getOutherIssues(state){

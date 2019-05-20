@@ -13,7 +13,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-for="(m, i) in menu" :key="i" 
           flat
-          :to="m.url"
+          @click='goto(m.url)'
         >
             <v-badge left>
               <template v-slot:badge>
@@ -100,6 +100,7 @@ export default {
   created(){
     this.user = this.$store.getters.getUser
     this.$store.dispatch('fetchIssues', this.user)
+    
   },
   computed: {
     error () {
@@ -123,6 +124,11 @@ export default {
       this.$store.dispatch('logOutUser')
       this.$router.push('/')
     },
+    goto(gt){
+      this.$store.dispatch('dropDown', false)
+      this.$router.push(gt)
+    },
+
 
   }   
 }

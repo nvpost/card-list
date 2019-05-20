@@ -11,10 +11,8 @@ class User {
 
 export default{
     state:{
-        user:{
-            id: '',
-            login: ''
-        }
+        user:null
+        
     },
     mutations:{
         setUser(state, payload){
@@ -70,6 +68,8 @@ export default{
                         localStorage.setItem('card-list-user', data.user)
                         localStorage.setItem('card-list-id', data.c_id)
                         commit('setUser', {id:data.c_id, login:data.user})
+                        console.log('Устанавливаем пользователя')
+                        this.dispatch('fetchIssues', this.getters.getUser)
                     }
                 })
             } catch (error) {
@@ -82,18 +82,10 @@ export default{
             commit('setUser', {id:localStorage.getItem('card-list-id'), login:localStorage.getItem('card-list-user')})
           },
           async logOutUser ({commit}) {
-            commit('setUser', null)          
+            commit('setUser', null)        
             localStorage.removeItem('card-list-user')
             localStorage.removeItem('card-list-id')
-            /*const user = await fetch("https://nv-dev.ru/application/card-list/logout.php", {
-                method: 'POST',
-                contentType: 'application/json',
-                //body: JSON.stringify(body)
-            })
-            .then( res => {return res.json()})
-            .then( data => {
-                console.log(data)
-            })*/
+            commit('setState', {inners:[], outhers:[]})  
           },
     },
     getters:{

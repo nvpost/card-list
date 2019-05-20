@@ -17,6 +17,7 @@ export default new Vuex.Store({
     mutations: {
         setLoading (state, payload) {
           state.loading = payload
+          console.log('loadingFalse payload: '+payload)
         },
         setError (state, payload) {
           state.error = payload
@@ -51,6 +52,7 @@ export default new Vuex.Store({
         },
         getDropDown(state){
           return state.dropDown
-        }
+        },
+
       } 
 })

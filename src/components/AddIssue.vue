@@ -69,8 +69,8 @@
                     small 
                     class="elevation-3"
                     @click="addRow()">
-          <v-icon>add</v-icon>
-        </v-btn>
+              <v-icon>add</v-icon>
+            </v-btn>
         </v-card-actions>
        </v-card-text>
 

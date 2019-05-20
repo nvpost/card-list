@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs12>
           <h1 color="primary">Входящие</h1>
-            <profile v-if="!user.id"></profile>
+            <profile v-if="!user"></profile>
             <authorized-user :user="user" v-else></authorized-user>
             <div v-if="getDropDown">
               <issue-list :issue="issue"></issue-list> 

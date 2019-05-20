@@ -16,6 +16,7 @@ export default{
     },
     actions:{
         async fetchIssues({commit}, payload){
+            console.log('startFetch')
             commit('clearError')
             commit('setLoading', true)
             try {
@@ -26,14 +27,18 @@ export default{
                 })
                 .then( res => {return res.json()})
                 .then( data => {
+                    
                     commit('setState', data)
+                    console.log('endFetch')
+                    commit('setLoading', false)
                 })
-                commit('setLoading', false)
+                
             } catch (error) {
                 commit('setLoading', false)
                 commit('setError', error.message)
                 throw error
             }
+            
             //return 'fetch ok'
         },
 

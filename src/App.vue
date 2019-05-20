@@ -10,12 +10,13 @@
         <!--<span class="font-weight-light">покупок</span>-->
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-for="(m, i) in menu" :key="i" 
           flat
           @click='goto(m.url)'
         >
-            <v-badge left>
+            <v-badge left v-if="getUserBool">
               <template v-slot:badge>
                 <span v-if="!loading">{{m.url=='/inner'?inners:outhers}}</span>
                 <span v-else>
@@ -26,9 +27,8 @@
                       color="white"
                     ></v-progress-circular>
                 </span>
-              </template>
-              
-        <v-icon left>{{m.icon}}</v-icon>
+              </template> 
+              <v-icon left>{{m.icon}}</v-icon>
             </v-badge>
           <span class="mr-2">{{m.text}}</span>
         </v-btn>
@@ -115,6 +115,9 @@ export default {
     outhers(){
       return this.$store.getters.getOutherIssues.length
     },
+    getUserBool(state){
+      return this.$store.getters.getUser
+    }
   },
   methods: {
     closeError () {
@@ -125,9 +128,11 @@ export default {
       this.$router.push('/')
     },
     goto(gt){
+      console.log(gt)
       this.$store.dispatch('dropDown', false)
       this.$router.push(gt)
     },
+
 
 
   }   

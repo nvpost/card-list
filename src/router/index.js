@@ -11,9 +11,11 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
+    //base: process.env.BASE_URL,
+    base:"/application/card-list/app/",
+
   routes: [
-    {path:'/', name:'home', component: Home},
+    {path:'./', name:'home', component: Home},
     {path:'/profile', name:'profile', component: Profile},
     {path:'/inner', name:'in', component: Inner},
     {path:'/outher', name:'out', component: Outher},

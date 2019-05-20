@@ -4,7 +4,7 @@
     <v-layout row>
       <v-flex xs12>
           <h1 color="primary">Исходящие</h1>
-            <profile v-if="!user.id"></profile>
+            <profile v-if="!user"></profile>
             <authorized-user :user="user" v-else></authorized-user>
             <div v-if="getDropDown">
               <issue-list :issue="issue"></issue-list> 
@@ -58,7 +58,6 @@ export default {
       if(!this.getDropDown){
         this.dropDown=!this.getDropDown
       }
-      console.log(this.issue)
       this.issue=issue
       this.$store.dispatch('dropDown', this.dropDown)
     }
